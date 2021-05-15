@@ -1,0 +1,75 @@
+<html>
+<body>
+
+<h1>Convertisseur pour PokeFarm (v1.2)</h1>
+
+<h2>Simple Convertisseur</h2>
+<p>Plutôt simple d'utilisation. Il suffit de mettre la somme de son choix, et cliquer sur le bouton correspondant à sa valeur actuelle. Ainsi en se basant sur le ratio 5k/5/1, la conversion avec les 2 autres valeurs sera faite automatiquement.</p>
+
+<input type="number" id="money">
+
+<button onclick="conversionCredits()"> Credits </button>
+<button onclick="conversionGP()"> GP </button>
+<button onclick="conversionZC()"> ZC </button>
+
+<p id="resultatConversion"></p>
+
+<h2>Convertisseur de Delta Points</h2>
+<p>Pour se donner rapidement une idée du prix à mettre sur le marché, ici il faut rentrer deux valeurs. Tout d'abord le nombre de Delta Points correspondant au Pokémon. Et ensuite dans le deuxième input, mettre le ratio que l'on veut. Le taux "universel" est x2, mais il est possible de mettre n'importe quelle valeur pour avoir directement la valeur souhaitée.</p>
+
+<input type="number" id="dp">
+<input type="number" id="rate">
+
+<button onclick="dpRate()"> Conversion </button>
+
+<p id="resultatDp"></p>
+
+<script>
+function conversionCredits() {
+	var valeur1 = document.getElementById("money").value;
+	var valeur2 = document.getElementById("money").value;
+	valeur1 = valeur1 / 1000;
+    valeur2 = valeur2 / 5000;
+	valeur1 = valeur1.toLocaleString("en-US");
+	valeur2 = valeur2.toLocaleString("en-US");
+	document.getElementById("resultatConversion").innerHTML = "Cela donne : " + valeur1 + " GP and " + valeur2 + " ZC";
+	}
+	
+function conversionGP() {
+	var valeur1 = document.getElementById("money").value;
+	var valeur2 = document.getElementById("money").value;
+	valeur1 = valeur1 * 1000;
+	valeur2 = valeur2 / 5;
+	valeur1 = valeur1.toLocaleString("en-US");
+	valeur2 = valeur2.toLocaleString("en-US");
+	document.getElementById("resultatConversion").innerHTML = "Cela donne : " + valeur1 + " Credits and " + valeur2 + " ZC";
+	}
+
+function conversionZC() {
+	var valeur1 = document.getElementById("money").value;
+	var valeur2 = document.getElementById("money").value;
+	valeur1 = valeur1 * 5000;
+	valeur2 = valeur2 * 5;
+	valeur1 = valeur1.toLocaleString("en-US");
+	valeur2 = valeur2.toLocaleString("en-US");
+	document.getElementById("resultatConversion").innerHTML = "Cela donne : " + valeur1 + " Credits and " + valeur2 + " GP";
+	}
+
+function dpRate() {
+	var dp1 = document.getElementById("dp").value;
+	var dp2 = document.getElementById("dp").value;
+	var dp3 = document.getElementById("dp").value;
+	var ratio = document.getElementById("rate").value;
+	dp1 = Math.round(dp1 * (ratio * 5000));
+	dp2 = Math.round(dp2 * (ratio * 5));
+	dp3 = Math.round(dp3 * (ratio * 1));
+	dp1 = dp1.toLocaleString("en-US");
+	dp2 = dp2.toLocaleString("en-US");
+	dp3 = dp3.toLocaleString("en-US");
+	document.getElementById("resultatDp").innerHTML = "Cela donne : [size=8]" + dp1 + "[item=credits] = " + dp2 + "[item=gold] = " + dp3 + "[item=zophan][/size]";
+	}	
+
+</script>
+
+</body>
+</html>
